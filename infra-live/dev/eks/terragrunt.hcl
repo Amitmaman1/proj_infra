@@ -3,11 +3,11 @@ terraform {
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 include "env" {
-  path           = find_in_parent_folders("env.hcl")
+  path           = "../env.hcl"
   expose         = true
   merge_strategy = "no_merge"
 }

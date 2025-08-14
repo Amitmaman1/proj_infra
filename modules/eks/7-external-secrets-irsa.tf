@@ -1,12 +1,5 @@
-data "aws_eks_cluster" "this" {
-  name = "${var.env}-${var.eks_name}"
-}
-
-resource "aws_iam_openid_connect_provider" "this" {
-  url = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
-  client_id_list   = ["sts.amazonaws.com"]
-  thumbprint_list  = ["9e99a48a9960b14926bb7f3b02e22da0afd10df6"]
-}
+# Using existing aws_eks_cluster data source from 1-eks.tf
+# Using existing aws_iam_openid_connect_provider from 4-irsa.tf
 
 data "aws_iam_policy_document" "eso_read" {
   statement {
@@ -34,11 +27,11 @@ data "aws_iam_policy_document" "eso_trust" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
     principals {
       type        = "Federated"
-      identifiers = [aws_iam_openid_connect_provider.this.arn]
+      identifiers = [aws_iam_openid_connect_provider.this[0].arn]
     }
     condition {
       test     = "StringEquals"
-      variable = "${replace(aws_iam_openid_connect_provider.this.url, "https://", "")}:sub"
+      variable = "${replace(aws_iam_openid_connect_provider.this[0].url, "https://", "")}:sub"
       values   = ["system:serviceaccount:external-secrets:external-secrets"]
     }
   }

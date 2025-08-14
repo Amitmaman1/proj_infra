@@ -3,11 +3,11 @@ terraform {
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 include "env" {
-  path           = find_in_parent_folders("env.hcl")
+  path           = "../../env.hcl"
   expose         = true
   merge_strategy = "no_merge"
 }
@@ -22,7 +22,7 @@ inputs = {
   cluster_ca       = dependency.eks.outputs.cluster_ca
   environment      = "prod"
   
-  app_repo_url        = "https://github.com/Amitmaman1/proj_gitops.git"
+  app_repo_url        = "https://github.com/your-org/your-app-repo"
   app_target_revision = "main"
-  app_path           = "helm-charts/my-app"  
+  app_path           = "."
 }
