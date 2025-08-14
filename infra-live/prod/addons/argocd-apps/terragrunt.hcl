@@ -24,5 +24,5 @@ inputs = {
   
   app_repo_url        = "https://github.com/Amitmaman1/proj_gitops.git"
   app_target_revision = "main"
-  app_path           = "helm-charts/my-app"  # Point to your specific chart
+  app_path           = "helm-charts/my-app"  
 }

@@ -6,7 +6,7 @@ remote_state {
   }
 
   config = {
-    bucket         = "bucket_for_tf"
+    bucket         = "bucketfortf121"
     key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
