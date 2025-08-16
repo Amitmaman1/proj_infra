@@ -1,0 +1,7 @@
+# Helm cache
+.helm/
+charts/*.tgz
+
+# IDE files
+.vscode/
+.idea/

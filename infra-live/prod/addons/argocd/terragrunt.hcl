@@ -2,10 +2,6 @@ terraform {
   source = "../../../../modules/addons/argocd"
 }
 
-include "root" {
-  path = find_in_parent_folders("root.hcl")
-}
-
 include "env" {
   path           = "../../env.hcl"
   expose         = true

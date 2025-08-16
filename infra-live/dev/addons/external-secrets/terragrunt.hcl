@@ -2,10 +2,6 @@ terraform {
   source = "../../../../modules/addons/external-secrets"
 }
 
-include "root" {
-  path = find_in_parent_folders("root.hcl")
-}
-
 include "env" {
   path           = "../../env.hcl"
   expose         = true
@@ -20,7 +16,7 @@ inputs = {
   cluster_name      = dependency.eks.outputs.cluster_name
   cluster_endpoint  = dependency.eks.outputs.cluster_endpoint
   cluster_ca        = dependency.eks.outputs.cluster_ca
-  external_role_arn = dependency.eks.outputs.external_secrets_role_arn
+  external_role_arn = dependency.eks.outputs.openid_provider_arn
 
   region        = "us-east-1"
   namespace     = "external-secrets"

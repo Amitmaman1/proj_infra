@@ -2,10 +2,6 @@ terraform {
   source = "../../../../modules/addons/aws-load-balancer-controller"
 }
 
-include "root" {
-  path = find_in_parent_folders("root.hcl")
-}
-
 include "env" {
   path           = "../../env.hcl"
   expose         = true

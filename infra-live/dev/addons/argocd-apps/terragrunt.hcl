@@ -2,10 +2,6 @@ terraform {
   source = "../../../../modules/addons/argocd-apps"
 }
 
-include "root" {
-  path = find_in_parent_folders("root.hcl")
-}
-
 include "env" {
   path           = "../../env.hcl"
   expose         = true
@@ -22,8 +18,8 @@ inputs = {
   cluster_ca       = dependency.eks.outputs.cluster_ca
   environment      = "dev"
   
-  app_repo_url        = "https://github.com/your-org/your-app-repo"
+  app_repo_url        = "https://github.com/amitmaman/gitops"
   app_target_revision = "main"
-  app_path           = "."
+  app_path           = "helm-charts/my-app"
 }
 
